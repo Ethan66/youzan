@@ -9,8 +9,13 @@ import { InfiniteScroll } from 'mint-ui';
 
 Vue.use(InfiniteScroll);
 
+import Foot from 'components/Foot'
+
 let app=new Vue({
   el: '#app',
+  components: [
+    Foot
+  ],
   data:{
     lists: null,
     pageNum: 1,
