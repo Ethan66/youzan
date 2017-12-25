@@ -1,5 +1,5 @@
 let url = {
-  hostLists: '/index/hotLists'
+  hotLists: '/index/hotLists'
 }
 
 let host='http://rapapi.org/mockjsdata/30131'
