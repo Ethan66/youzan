@@ -5,6 +5,10 @@ import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
 
+import { InfiniteScroll } from 'mint-ui';
+
+Vue.use(InfiniteScroll);
+
 let app=new Vue({
   el: '#app',
   data:{
