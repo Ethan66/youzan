@@ -13,18 +13,20 @@ import Foot from 'components/Foot'
 
 let app=new Vue({
   el: '#app',
-  components: [
+  components: {
     Foot
-  ],
+  },
   data:{
     lists: null,
     pageNum: 1,
     pageSize: 6,
     loading: false,
-    allLoaded: false
+    allLoaded: false,
+    bannerLists: null
   },
   created(){
    this.getLists()
+    this.getBanner()
   },
   methods:{
     getLists(){
@@ -46,6 +48,11 @@ let app=new Vue({
         }
         this.loading = false
         this.pageNum++
+      })
+    },
+    getBanner(){
+      axios.get(url.banner).then(res => {
+        this.bannerLists = res.data.lists
       })
     }
   }
