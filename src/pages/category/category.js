@@ -47,5 +47,10 @@ new Vue({
       })
     }
   },
+  filters:{
+    number(price){
+      return price+'.00'
+    }
+  }
 
 })
