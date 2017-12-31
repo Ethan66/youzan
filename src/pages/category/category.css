@@ -763,7 +763,6 @@ html {
 
 .class-category,
 .class-nav {
-  height: 100%;
   overflow: hidden
 }
 
@@ -815,7 +814,8 @@ only screen and (min-device-pixel-ratio:1.5) {
 }
 
 .main-content {
-  height: 100%
+  height: 450px;
+  overflow-y: scroll;
 }
 
 .main-content .category-title {
