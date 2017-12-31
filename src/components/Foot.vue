@@ -8,6 +8,8 @@
 </template>
 
 <script>
+  import qs from 'qs'
+  let {index} = qs.parse(location.search.substr(1))
   let navConfig = [{
     name: '有赞',
     icon: 'icon-home',
@@ -33,8 +35,12 @@
     data(){
       return {
         navConfig,
-        curIndex:0,
+        curIndex: parseInt(index)|| 0,
       }
+    },
+    created(){
+      console.log(location.search.substr(1))
+      console.log(index)
     },
     methods:{
       changeNav(list,index){
