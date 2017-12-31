@@ -54,64 +54,34 @@
         <div class="class-nav">
           <div id="scroll-nav" style="height: 100%;">
             <ul class="nav" id="scroll-nav-content" style="height: 540px; transform: translate3d(0px, 0px, 0px);">
-              <li class="category-name js-category-name active" :data-cid="list.id" v-for="list in topLists">{{list.name}}</li>
+              <li class="category-name js-category-name" :class="{active:index==topIndex}"
+                  :data-cid="list.id" v-for="(list,index) in topLists"
+              @click="getSubList(list.id,index)">{{list.name}}</li>
             </ul>
           </div>
         </div>
         <div class="class-category">
           <div id="scroll-main-wrap" class="main-content">
-            <div id="scroll-main-content" class="js-main-content inner-content" style="height: 943px; transform: translate3d(0px, 0px, 0px); display: none;">
+            <div id="scroll-main-content" class="js-main-content inner-content" style="height: 943px; transform: translate3d(0px, 0px, 0px);" v-show="topIndex==0">
               <div class="hot-wrap">
                 <div class="hot-goods">
                   <div class="hot-title">
                     <p class="pull-left">热销商品榜</p>
                     <a href="https://maijia.youzan.com/mars/rank/hotgoods" class="pull-right icon-right">更多</a>
                   </div>
-                  <ul>
-                    <li class="goods-item">
+                  <ul v-if="rankData">
+                    <li class="goods-item" v-for="(list,index) in rankData.hotGoods">
                       <a href="https://h5.youzan.com/v2/showcase/goods?alias=27cjv5wdsb4to&amp;source=yzapp&amp;f_platform=yzapp">
                         <div class="thumb badge center-img">
-                          <img src="https://img.yzcdn.cn/upload_files/2017/02/01/Fm3TX1YgkaJsSzZNfP8pYqV4w30_.jpg?imageView2/2/w/180/h/0/q/75/format/jpg">
-                          <span class="num">1</span>
+                          <img :src="list.image">
+                          <span class="num">{{index+1}}</span>
                         </div>
                         <div class="detail">
-                          <div class="title">Nature自然系列 | 混合版，花点时间热卖中，139元/4束，新用户赠花瓶。每周一束混合花束，品种随机。</div>
-                          <div class="price">￥139.00</div>
+                          <div class="title">{{list.name}}</div>
+                          <div class="price">{{list.price}}</div>
                           <div class="recommend">
                             <span>推荐值:</span>
-                            <span>45371</span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="goods-item">
-                      <a href="https://h5.youzan.com/v2/showcase/goods?alias=1y3yyc3dntxpb&amp;source=yzapp&amp;f_platform=yzapp">
-                        <div class="thumb badge center-img">
-                          <img src="https://img.yzcdn.cn/upload_files/2017/07/07/FrReTkX7by5UykdANunTgLO6A96I.jpg?imageView2/2/w/180/h/0/q/75/format/jpg">
-                          <span class="num">2</span>
-                        </div>
-                        <div class="detail">
-                          <div class="title">范冰冰同款，一款越晒越白的防晒帽！</div>
-                          <div class="price">￥138.00</div>
-                          <div class="recommend">
-                            <span>推荐值:</span>
-                            <span>1203</span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li class="goods-item">
-                      <a href="https://h5.youzan.com/v2/showcase/goods?alias=yzlvlgx&amp;source=yzapp&amp;f_platform=yzapp">
-                        <div class="thumb badge center-img">
-                          <img src="https://img.yzcdn.cn/upload_files/2017/01/24/Fu02cf12xKmGOVLNmBvl18UWRoVj.jpg?imageView2/2/w/180/h/0/q/75/format/jpg">
-                          <span class="num">3</span>
-                        </div>
-                        <div class="detail">
-                          <div class="title">【周黑鸭_锁鲜】气调盒装卤鸭锁骨240g</div>
-                          <div class="price">￥23.90</div>
-                          <div class="recommend">
-                            <span>推荐值:</span>
-                            <span>1192</span>
+                            <span>{{list.recommend}}</span>
                           </div>
                         </div>
                       </a>
@@ -198,7 +168,7 @@
                 </div>
               </div>
             </div>
-            <div id="scroll-main-content" class="js-main-content inner-content" style="height: 534px; transform: translate3d(0px, 0px, 0px);">
+            <div id="scroll-main-content" class="js-main-content inner-content" style="height: 534px; transform: translate3d(0px, 0px, 0px);" v-show="topIndex>0">
               <h3 class="category-title">热门品牌 </h3>
               <ul class="category-content">
                 <li class="category-item js-category-item" data-item-id="85" data-item-name="良品铺子">
