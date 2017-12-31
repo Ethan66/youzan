@@ -15,7 +15,8 @@ new Vue({
   data(){
     return {
       searchList: null,
-      keyword
+      isShow: false,
+      keyword,
     }
   },
   created(){
@@ -26,6 +27,17 @@ new Vue({
       axios.post(url.searchList,{keyword,id}).then(res => {
         this.searchList = res.data.lists
       })
+    },
+    move(){
+      if(document.body.scrollTop > 100){
+        this.isShow = true
+      }
+      else {
+        this.isShow = false
+      }
+    },
+    toTop(){
+
     }
   },
   mixins: [mixin]
