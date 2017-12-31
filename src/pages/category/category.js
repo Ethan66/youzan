@@ -4,14 +4,15 @@ import 'css/common.css'
 import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
+import mixin from 'js/mixin.js'
 
-import Foot from 'components/Foot.vue'
+// import Foot from 'components/Foot.vue'
 
 new Vue({
   el:'#app',
-  components: {
+  /*components: {
     Foot
-  },
+  },*/
   data: {
     topLists: null,
     topIndex: 0,
@@ -50,7 +51,7 @@ new Vue({
       location.href = 'search.html?keyword='+list.name+'&id='+list.id
     }
   },
-  filters:{
+  /*filters:{
     number(price){
       let priceStr = '' + price
       if(priceStr.indexOf('.')>-1){
@@ -61,6 +62,7 @@ new Vue({
         return priceStr + '.00'
       }
     }
-  }
+  },*/
+  mixins: [mixin]
 
 })
